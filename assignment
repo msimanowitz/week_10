@@ -1,0 +1,43 @@
+import os
+# prompt user for directory file
+# store file in a value
+# prompt user for directory file
+# get user name, phone number, and address
+# append file with user information
+# read file back to user with appended information
+
+# getting the name of directory and file from the user
+file_name = input("Please enter file name: ")
+directory = input("Please enter directory name: ")
+
+# checking the directory exists
+is_dir = os.path.isdir(directory)
+while not is_dir:
+  directory = input("Please enter directory name: ")
+  is_dir = os.path.isdir(directory)
+
+
+# get user name, address, and phone number
+user_name = input("Enter name: ")
+user_address = input("Enter address: ")
+user_phone = input("Enter phone number: ")
+
+# create a file in that directory
+# file_path = directory + file_name
+with open(os.path.join(directory, file_name), 'w') as f:
+  f.write(user_name)
+  f.write("\n")
+  f.write(user_address)
+  f.write("\n")
+  f.write(user_phone)
+
+f.close()
+
+with open(os.path.join(directory, file_name), 'r') as f:
+  print("Here are the contents of your file: ")
+  # Lines = f.readlines()
+  # print(Lines)
+  for line in f:
+    print(line)
+
+f.close()
